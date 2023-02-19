@@ -1,0 +1,386 @@
+{{!-- <html>
+    <body>
+      <h1>{{db_result.grantCollection}}</h1>
+    </body>
+</html> --}}
+
+<html>
+    <head>
+        <script>
+
+        </script>
+         <title>GrantHive</title>
+         <style>
+        
+        #TestsDiv {
+            width: 50%;
+			height: 50%;
+			background-color: #dbde89;
+			margin: auto;
+			margin-top: 50px;
+			padding: 20px;
+			box-shadow: 0px 0px 10px #cdcea1;
+			border-radius: 5px;
+			text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-seri;
+        }    
+
+        h3 {
+            color: #fcfffd;
+        }
+
+        h1 {
+            color: white;
+            padding: 50;
+        }
+
+        legend {
+            color: white;
+            font-size: large;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        
+
+        /* Style the labels and text boxes */
+        label {
+            display: block;
+            width: 45rem; /* Set the label width */
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 50rem; /* Set the text box width */
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+            box-shadow: 0px 0px 5px #888888;
+        }
+
+        input[type="number"] {
+            min: 0;
+        }
+        /* Style the submit button */
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            align-items: center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+
+  body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #18191A;
+  }
+
+  button {
+    position: relative;
+    background: #e6ff07;
+    color: #fff706;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    padding: 5rem 35rem;
+    transition: 0.2s;
+    overflow: hidden;
+  }
+
+  button:hover {
+    letter-spacing: 0.2rem;
+    padding: 5.5rem 35.5rem;
+    background: var(--clr);
+    color: fff706;
+    /* box-shadow: 0 0 35px var(--clr); */
+    animation: box 10s infinite;
+  }
+
+  button::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: #272822;
+  }
+
+  button span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  button i {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  button i::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 80%;
+    top: -2px;
+    border: 2px solid var(--clr);
+    background: #c4e90a;
+  transition: 0.2s;
+}
+
+button:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+button i::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid var(--clr);
+  background: #cdf602;
+  transition: 0.2s;
+  margin-left: 50px;
+}
+
+button:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #0202ea;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
+}
+   
+        
+	</style>
+    </head>
+    <body>
+    <form action="/grant-2570b/us-central1/app/insert_data" method="post" >
+    {{!-- <div> --}}
+        <h1>Are you qualified for housing grants?</h1>
+
+        <fieldset>
+        <legend>Grant Eligibility Form</legend>
+            <br><br>
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required>
+
+            <label for="age">Age in Years:</label>
+            <input type="number" id="age" name="age" min ="0" required>
+
+            <label for="uscitizen">Are you a citizen of the United States of America or a Green Card holder:</label>
+            <select id="uscitizen" name="uscitizen" required>
+                {{!-- <option value="">Select yes or no</option> --}}
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br><br>
+
+            
+
+            <label for="veteran">Are you serving and or have every served in the U.S. Military?:</label>
+            <select id="veteran" name="veteran" required>
+                {{!-- <option value="">Select yes or no</option> --}}
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br><br>
+
+            <label for="numPeople">Number of People in Your Household:</label>
+            <input type="number" id="numPeople" name="numPeople"  min ="0" required>
+
+            
+            <label for="yearlyIncome">Yearly Income:</label>
+            <select id="yearlyIncome" name="yearlyIncome" required>
+                <option value="">Select an income range</option>
+                <option value="60000orless">$60,000 or less</option>
+                <option value="75000ormore">$75,000 or more</option>
+            </select>
+            <br><br>
+
+            <label for="uscitizen">Are you currently homeless, at risk of becoming homeless, and/or fleeing or attempting to flee domestic abuse, sexual assault, dating violence, human traffic?</label>
+            <select id="uscitizen" name="uscitizen" required>
+                {{!-- <option value="">Select yes or no</option> --}}
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit" onclick="myFunction()"> 
+            
+            {{!-- <p id="demo"></p>
+            <script>
+                window.onclick = myFunction;
+                function myFunction() {
+                    document.getElementById("demo").innerHTML = "Submitted! Scroll down to view your eligible grants.";
+                }
+            </script> --}}
+            </fieldset>
+            <br><br>            
+            <br><br>
+            <br><br>
+
+            <script>
+            function TestsFunction() {
+                var T = document.getElementById("TestsDiv");
+                T.style.display = "block";  // <-- Set it to block
+            }   
+            </script>
+
+            <button type="button" onclick="TestsFunction()">Tests
+                <span> 
+                <h3>Click Here to see your eligible grants!</h3> <br>
+                </span>
+            </button>
+    <br><br>
+
+            <div id="TestsDiv" style="display:none">
+                <h2>Affordable Housing and Sustainable Communities Program</h2>
+                <a href="https://www.hcd.ca.gov/grants-and-funding/programs-active/affordable-housing-and-sustainable-communities">(AHSC)</a>
+                <br>
+                The AHSC Program funds land-use, housing, transportation, and land preservation projects to support infill and compact development that reduce greenhouse gas ("GHG") emissions. Funding for the AHSC Program is provided from the Greenhouse Gas Reduction Fund (GGRF), an account established to receive Cap-and-Trade auction proceeds.
+                
+                <h2>Multifamily Housing Program (MHP)</h2>
+                <a href="https://www.hcd.ca.gov/grants-and-funding/programs-active/multifamily-housing-program">(MHP)</a>
+                <br>
+                Low-interest, long-term deferred-payment loans for new construction, rehabilitation, and preservation of permanent and transitional rental housing for lower-income households.
+                
+                <h2>Transitional Age Youth (TAY) Program</h2>
+                <a href="https://www.hcd.ca.gov/grants-and-funding/programs-active/transitional-age-youth-program">(TAY)</a>
+                <br>
+Through the Housing Navigation and Maintenance Program (HNMP), the Transitional Housing Program (THP), and the Transitional Housing Plus Housing Supplement Program (THPSUP), eligible counties receive funding to support child welfare services agencies and housing navigation and maintenance to help house our most vulnerable young adults. It is encouraged that the county coordinate with the local Continuum of Care to foster communication and collaboration.            </div>
+            <br><br>
+            <br><br>
+
+
+
+
+        {{!-- </div> --}}
+        </form>
+
+            {{!-- <button style="--clr:#39FF14" onclick="window.open('https://www.hcd.ca.gov/grants-and-funding/programs-active/emergency-solutions-grants', '_blank')">
+    Google <br>
+    <span>
+      <h3>Solutions Grants Program (ESG) </h3> <br>
+      The ESG program provides grant funding to (1) engage homeless individuals and families living on the street, 
+      (2) rapidly re-house homeless individuals and families, 
+      (3) help operate and provide essential services in emergency 
+      shelters for homeless individuals and families, and 
+      (4) prevent individuals and families from becoming homeless.
+
+
+    </span>
+    <i></i>
+  </button>
+            <br><br>
+
+  <button style="--clr:#FF44CC" onclick="window.open('https://www.hcd.ca.gov/grants-and-funding/programs-active/transitional-age-youth-program', '_blank')">
+    Google <br>
+    <span>
+      <h3>Transitional Age Youth (TAY) Program</h3> <br>
+      Assist young adults aged 18-24 years of age, inclusive,
+      secure and maintain housing (with priority access given to 
+      young adults in the state's foster care system); 
+    </span>
+    <i></i>
+  </button>
+    <br><br>
+
+  <button style="--clr:#0FF0FC" onclick="window.open('https://www.hcd.ca.gov/grants-and-funding/programs-active/multifamily-housing-program', '_blank')">
+    Google <br>
+    <span>  <h3> Multifamily Housing Program (MHP)</h3> <br>
+      The MHP provides funding to develop, acquire, and/or rehabilitate 
+      affordable rental housing for low-income households. 
+      The MHP is funded by the California Tax Credit Allocation Committee (TCAC) 
+      and administered by HCD.
+    </span>
+    <i></i>
+  </button>
+
+    <br><br>
+
+  <button style="--clr:#8A2BE2" onclick="window.open('https://www.hcd.ca.gov/grants-and-funding/programs-active/veterans-housing-and-homelessness-prevention', '_blank')">
+    Google <br>
+    <span> 
+      <h3>Veterans Housing and Homelessness Prevention Program (VHHP)</h3> <br>
+      Long-term loans for the acquisition, construction, rehabilitation, 
+      and preservation of affordable multifamily housing for veterans and 
+      their families to allow veterans to access and maintain housing stability.
+      
+    </span>
+    <i></i>
+  </button> --}}
+
+        {{!-- <ul>
+            <li>Click <a href="#one">here</a> for page 1</li>
+            <li>Click <a href="#two">here</a> for page 2</li>
+        </ul>
+
+        <div class="page" id="one">
+        Content of page 1 goes here.
+            <ul>
+                <li><a href="#">Back</a></li>
+                <li><a href="#two">Page 2</a></li>
+            </ul>
+        </div>
+
+        <div class="page" id="two">
+        Content of page 2 goes here.
+
+        <ul style="margin-bottom: 100vh;">
+            <li><a href="#">Back</a></li>
+            <li><a href="#one">Page 1</a></li>
+        </ul>
+        </div> --}}
+    </body>
+</html>
